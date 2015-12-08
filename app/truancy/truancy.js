@@ -26,7 +26,7 @@ angular.module('myApp.truancy', ['ngRoute','NewfileDialog', 'datePicker', 'angul
             columnDefs: [
                 {
                     name: '姓名',
-                    field: 'StudentName'
+                    field: 'Name'
                     //footerCellTemplate: '<div class="ui-grid-cell-contents" ng-click="" ><a ng-click=" $event.stopPropagation();grid.appScope.add()">增加</a></div>'
                 },
                 {
@@ -65,35 +65,66 @@ angular.module('myApp.truancy', ['ngRoute','NewfileDialog', 'datePicker', 'angul
             }).finally(function () {
 
             });
+
             $scope.change = function (e) {
+                if($scope.startdate == '' || $scope.enddate == ''){
+                    alert("请选择起止日期");
+                    $scope.Message.CollegeId = '';
+                }else{
+                    $scope.myPromise = $http.get(URL+'ViewProfession', {params: {CollegeId: e}})
+                        .success(function (data) {
+                            console.log(data)
+                            $scope.Profession = data;
+                        }).error(function (data) {
 
-                //$scope.myPromise = $http.get(URL+'ViewProfession', {params: {CollegeId: e}})
-                var BeginDay = $filter('date')($scope.startdate, 'yyyy-MM-dd');
-                var EndDay = $filter('date')($scope.enddate, 'yyyy-MM-dd');
-                $scope.myPromise = $http.get(URL+'getAbsenteeismForProfession', {params: {CollegeId: e,BeginDay:BeginDay,EndDay:EndDay}})
-                    .success(function (data) {
-                        console.log(data)
-                        $scope.Profession = data;
-                    }).error(function (data) {
+                        }).finally(function () {
 
-                    }).finally(function () {
+                        });
+                    var BeginDay = $filter('date')($scope.startdate, 'yyyy-MM-dd');
+                    var EndDay = $filter('date')($scope.enddate, 'yyyy-MM-dd');
+                    $scope.myPromise = $http.get(URL+'getAbsenteeismForProfession', {params: {CollegeId: e,BeginDay:BeginDay,EndDay:EndDay}})
+                        .success(function (data) {
+                            console.log(data)
+                            $scope.gridOptions.data = data;
 
-                    });
+                        }).error(function (data) {
+
+                        }).finally(function () {
+
+                        });
+                }
+
+
             }
             $scope.change1 = function (e) {
-                console.log($scope.Message.ProfessionId)
-                var BeginDay = $filter('date')($scope.startdate, 'yyyy-MM-dd');
-                var EndDay = $filter('date')($scope.enddate, 'yyyy-MM-dd');
-                $scope.myPromise = $http.get(URL+'getAbsenteeismForClass', {params: {ProfessionId: e,BeginDay:BeginDay,EndDay:EndDay}})
-                //$scope.myPromise = $http.get(URL+'ViewClasses', {params: {ProfessionId: e}})
-                    .success(function (data) {
-                        console.log(data)
-                        //$scope.Classes = data;
-                    }).error(function (data) {
+                if($scope.startdate == '' || $scope.enddate == ''){
+                    alert("请选择起止日期");
+                    $scope.Message.ClassId = '';
+                }else{
+                    $scope.myPromise = $http.get(URL+'ViewClasses', {params: {ProfessionId: e}})
+                        .success(function (data) {
+                            console.log(data)
+                            $scope.Classes = data;
+                        }).error(function (data) {
 
-                    }).finally(function () {
+                        }).finally(function () {
 
-                    });
+                        });
+                    console.log($scope.Message.ProfessionId)
+                    var BeginDay = $filter('date')($scope.startdate, 'yyyy-MM-dd');
+                    var EndDay = $filter('date')($scope.enddate, 'yyyy-MM-dd');
+                    $scope.myPromise = $http.get(URL+'getAbsenteeismForClass', {params: {ProfessionId: e,BeginDay:BeginDay,EndDay:EndDay}})
+                        .success(function (data) {
+                            console.log(data)
+                            $scope.gridOptions.data = data;
+                        }).error(function (data) {
+
+                        }).finally(function () {
+
+                        });
+
+                }
+
             }
             $scope.change2 = function(e){
                 if($scope.startdate == '' || $scope.enddate == ''){
