@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>管理后台</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-grid/ui-grid.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-busy/dist/angular-busy.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-datepicker/dist/angular-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="Sign/datePicker/css/angular-pickadate.css">
+    <!--<link rel="stylesheet" type="text/css" href="Sign/loading-bar.css">-->
+    <!--<script src="Sign/loading-bar.js"></script>-->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="bower_components/js-xlsx/dist/xlsx.core.min.js"></script>
+    <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+    <script src="bower_components/angular-modal-service/dst/angular-modal-service.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/angular-datepicker/dist/angular-datepicker.min.js"></script>
+
+    <script src="nw-fileDialog.js"></script>
+    <script src="Sign/datePicker/js/angular-pickadate.js"></script>
+    <script src="app.js"></script>
+    <script src="doctor/doctor.js"></script>
+    <script src="course/course.js"></script>
+    <script src="student/student.js"></script>
+    <!--<script src="question/question.js"></script>-->
+    <script src="truancy/truancy.js"></script>
+    <script src="Sign/sign.js"></script>
+    <script src="import/import.js"></script>
+    <script src="angular-down-file-directive.js"></script>
+    <script src="FileSaver.min.js"></script>
+    <script src="bower_components/ckeditor/ckeditor.js"></script>
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
+    <link rel="stylesheet" href="app.css">
+
+</head>
+<body >
+<div class="top"></div>
+<div id="header">
+    <div class="logo">后台管理系统</div>
+    <div class="navigation" ng-controller="appCtrl">
+        <ul>
+            <li>欢迎您！</li>
+            <li><a href="">{{name}}</a></li>
+            <!--<li><a href="">修改密码</a></li>-->
+            <!--<li><a href="">登录</a></li>-->
+            <li><a href="" ng-click="quit()">退出</a></li>
+        </ul>
+    </div>
+</div>
+<div id="content">
+    <div class="left_menu">
+        <ul id="nav_dot">
+            <!--<li>-->
+                <!--<h4><a href="#/doctor">系统公告</a></h4>-->
+            <!--</li>-->
+            <li>
+                <h4><a href="#/truancy">查看旷课</a></h4>
+            </li>
+            <li>
+                <h4><a href="#/sign">录入签到表</a></h4>
+            </li>
+            <li>
+                <h4><a href="#/import">录入学生信息</a></h4>
+            </li>
+            <li>
+                <h4><a href="#/student">查看学生信息</a></h4>
+            </li>
+            <li>
+                <h4><a href="#/course">调课</a></h4>
+            </li>
+
+        </ul>
+    </div>
+    <div class="m-right">
+        <div ng-view></div>
+
+    </div>
+</div>
+<div class="bottom"></div>
+<div id="footer"><p>Copyright©  2015 版权所有 </p></div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<div class="right-nav">
+    <ul>
+        <li style="margin-left:25px;">您当前的位置：</li>
+        <li><a href="#">签到表</a></li>
+    </ul>
+</div>
+<div class="main">
+    <div class="col-md-10">
+        <div class=“row”>
+            <!--<div><h2>签到表</h2></div>-->
+            <div>
+                <!--班级名称：<input ng-model="ff.ClassName" style="margin-top: 10px;margin-bottom: 10px" type="text"></div>-->
+            <div style="margin-top: 10px">
+                选择学院： <select ng-model="Message.CollegeId" ng-change="change(Message.CollegeId)" style="height: 200px;width: 20%">
+                <option ng-repeat="ds in College" value="{{ds._id}}">{{ds.CollegeName}}</option>
+            </select>
+            </div>
+            <div style="margin-top: 10px">
+                选择专业： <select ng-model="Message.ProfessionId" ng-change="change1(Message.ProfessionId)" style="height: 200px;width: 20%">
+                <option ng-repeat="ds in Profession" value="{{ds._id}}">{{ds.ProfessionName}}</option>
+            </select>
+            </div>
+            <div style="margin-top: 10px">
+                选择班级： <select ng-model="ff.ClassName" ng-change="myClassName()" style="height: 200px;width: 20%">
+                <option ng-repeat="ds in Classes" value="{{ds.ClassName}}">{{ds.ClassName}}</option>
+            </select>
+            </div>
+            <div style="margin-top: 10px;margin-bottom: 10px">
+                开课时间：<input type="date" ng-model="ff.BeginDay">
+                <div>
+                    <!--ng-click="opendateModal()"-->
+
+                    <div id="grid1" ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav external-scopes="clickHandler"  ui-grid-pagination class="grid"></div>
+                </div>
+                </div>
+                <div style="margin-top: 10px;">
+                    <button class="btn btn-large btn-info" ng-click="addData()" style="border: 0;border-radius: 0">增加</button>
+                    <button class="btn btn-large btn-success" style="border: 0;border-radius: 0" ng-click="determinemodal()">保存</button>
+                </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+

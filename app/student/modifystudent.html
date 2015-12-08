@@ -1,0 +1,89 @@
+
+<div class="modal fade" style="margin-top: 200px">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 800px;left: 0px">
+
+            <div class="modal-body">
+                <div ng-show="ff">请输入你要修改学生的学号：<input ng-model="Findstudent.Number" type="text"/></div>
+                <div ng-show="kk">
+                    <div style="float: left;width: 350px;height: 50px">
+                        姓名:<input ng-model="student.StudentName" type="text">
+                        <button ng-click="modify(1)">修改</button>
+                    </div>
+
+                    <div style="float: right;width: 350px;height: 50px">
+                        学号:<input ng-model="student.Number" type="text">
+                        <button ng-click="modify(2)">修改</button>
+                    </div>
+                    <div style="float: left;width: 350px;height: 50px">
+                        QQ:<input ng-model="student.QQ" type="text">
+                        <button ng-click="modify(3)">修改</button>
+
+                    </div>
+                    <div style="float: right;width: 350px;height: 50px">
+                        电话:<input ng-model="student.Phone" type="text">
+                        <button ng-click="modify(4)">修改</button>
+
+                    </div>
+                    <div style="float: left;width: 350px;height: 50px">
+                        班主任:<input ng-model="student.ClassTeacher" type="text">
+                        <button ng-click="modify(5)">修改</button>
+
+                    </div>
+                    <div style="float: right;width: 350px;height: 50px">
+                        宿舍号:<input ng-model="student.Dorm" type="text">
+                        <button ng-click="modify(6)">修改</button>
+                    </div>
+
+                    <div style="float: left;width: 350px;height: 50px">
+                        父亲电话:<input ng-model="student.FatherPhone" type="text">
+                        <button ng-click="modify(7)">修改</button>
+
+                    </div>
+                    <div style="float: right;width: 350px;height: 50px">
+                        母亲电话:<input ng-model="student.MotherPhone" type="text">
+                        <button ng-click="modify(8)">修改</button>
+
+                    </div>
+                    <div style="float: left;width: 350px;height: 50px">
+                        家庭地址:<input ng-model="student.Native" type="text">
+                        <button ng-click="modify(9)">修改</button>
+                    </div>
+                    <div style="float: right;width: 350px;height: 50px">
+
+                        身份证号:<input ng-model="student.ID_card" type="text">
+                        <button ng-click="modify(10)">修改</button>
+                    </div>
+                    <div style="float: left;width: 350px;height: 50px">
+                        学院:<select ng-model="student.Colleges._id" style="height: 200px;width: 100px">
+                        <option ng-repeat="ds in College" value="{{ds._id}}">{{ds.CollegeName}}</option>
+                    </select>
+                    </div>
+                    <div style="float: right;width: 350px;height: 50px">
+                        专业:<select ng-model="student.Professions._id" ng-change="change1(student.Professions,_id)" style="height: 200px;width: 100px">
+                        <option ng-repeat="ds in Profession" value="{{ds._id}}">{{ds.ProfessionName}}</option>
+                    </select>
+                    </div>
+                    <div style="float: left;width: 350px;height: 50px">
+                        班级:<select ng-model="student.Classes._id" ng-change="change2(student.Classes._id)" style="height: 200px;width: 100px">
+                        <option ng-repeat="ds in Classes" value="{{ds._id}}">{{ds.ClassName}}</option>
+                    </select>
+                    </div>
+                    <div style="float: right;width: 350px;height: 50px">
+                        性别:<select ng-model="student.Sex" style="height: 200px;width: 100px">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                    </div>
+                </div>
+                <div cg-busy="myPromise"></div>
+            </div>
+
+            <div class="modal-footer" >
+                <button ng-show="ff" type="button" ng-click="findstudent(Findstudent)" class="btn btn-default">查找学生</button>
+                <button ng-show="kk" type="button" ng-click="closemodel()" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+            </div>
+        </div>
+    </div>
+</div>

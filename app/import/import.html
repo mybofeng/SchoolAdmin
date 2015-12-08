@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div class="right-nav">
+    <ul>
+        <li style="margin-left:25px;">您当前的位置：</li>
+        <li><a href="#">录入学生信息</a></li>
+    </ul>
+</div>
+<div class="main">
+    <div class="col-md-10">
+        <div style="margin-top: 10px">
+            选择学院： <select ng-model="Message.CollegeId" ng-change="change(Message.CollegeId)" style="height: 200px;width: 20%">
+            <option ng-repeat="ds in College" value="{{ds._id}}">{{ds.CollegeName}}</option>
+        </select>
+        </div>
+        <div style="margin-top: 10px">
+            选择专业： <select ng-model="Message.ProfessionId" ng-change="change1(Message.ProfessionId)" style="height: 200px;width: 20%">
+            <option ng-repeat="ds in Profession" value="{{ds._id}}">{{ds.ProfessionName}}</option>
+        </select>
+        </div>
+        <div style="margin-top: 10px">
+            选择班级： <select ng-model="Message.ClassId" ng-change="classname(Message.ClassId)" style="height: 200px;width: 20%">
+            <option ng-repeat="ds in Classes" value="{{ds._id}}">{{ds.ClassName}}</option>
+        </select>
+        </div>
+
+
+        <div class="main">
+            <div class="col-md-10">
+                <div class=“row”>
+                    <div style="margin-top: 10px;">
+
+                        <div ng-controller="importCtrl as vm">
+
+                            <br/>
+                            <br/>
+
+                            <div id="grid1" ui-grid="vm.gridOptions" class="grid">
+                                <div class="grid-msg-overlay" ng-show="!vm.gridOptions.data.length">
+                                    <div class="msg">
+                                        <div class="center">
+                                            <button type="button" class="btn btn-success" ng-click="changePortait()">选择文件
+                                            </button>
+                                            <br/>
+                                            <!--<input  type="file" accept=".xls,.xlsx" fileread="" opts="vm.gridOptions" multiple="false" />-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px">
+            <button type="button" class="btn btn-success" ng-click="send()">保存数据</button>
+
+            <button type="button" onclick="window.location.href='moban.xls'" class="btn btn-primary">下载模版</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

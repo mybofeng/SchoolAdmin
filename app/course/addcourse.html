@@ -1,0 +1,24 @@
+<div class="modal fade" >
+    <div class="modal-dialog" style="width: 80%;">
+        <div class="modal-content">
+            <div class="modal-header" style="font-weight: bolder">
+                添加新课程
+            </div>
+            <div class="modal-body">
+                <div>
+                    开学时间：<input type="date" ng-model="ff.BeginDay">（即第一周的星期一）
+                    <div id="grid1" style="height: 200px;margin-top: 10px" ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav external-scopes="clickHandler"  ui-grid-pagination class="grid"></div>
+                    <!--<div id="grid1" ui-grid="gridOptions" class="grid"></div>-->
+                </div>
+                <div style="margin-top: 10px;">
+                    <button class="btn btn-large btn-info" ng-click="addData()">增加数据</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="closeModal('No')" class="btn btn-default" data-dismiss="modal">取消</button>
+                <!--<button type="button" ng-click="closeModal('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button>-->
+                <button class="btn btn-primary" ng-click="savemo()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

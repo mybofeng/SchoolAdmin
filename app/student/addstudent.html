@@ -1,0 +1,71 @@
+
+<div class="modal fade" style="margin-top: 200px;">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 800px;">
+
+            <div class="modal-body">
+                <div style="float: left;width: 350px;height: 50px">
+                    姓名:<input ng-model="StudentMess.StudentName" type="text">
+                </div>
+
+                <div style="float: right;width: 350px;height: 50px">
+                    学号:<input ng-model="StudentMess.Number" type="text">
+                </div>
+                <div style="float: left;width: 350px;height: 50px">
+                    QQ:<input ng-model="StudentMess.QQ" type="text">
+                </div>
+                <div style="float: right;width: 350px;height: 50px">
+                    电话:<input ng-model="StudentMess.Phone" type="text">
+                </div>
+                <div style="float: left;width: 350px;height: 50px">
+                    宿舍号:<input ng-model="StudentMess.FatherPhone" type="text">
+
+                </div>
+                <div style="float: right;width: 350px;height: 50px">
+
+                </div>
+
+                <div style="float: left;width: 350px;height: 50px">
+                    父亲电话:<input type="text">
+                </div>
+                <div style="float: right;width: 350px;height: 50px">
+                    母亲电话:<input ng-model="StudentMess.MotherPhone" type="text">
+                </div>
+                <div style="float: left;width: 350px;height: 50px">
+                    家庭地址:<input ng-model="StudentMess.Native" type="text">
+                </div>
+                <div style="float: right;width: 350px;height: 50px">
+
+                    身份证号:<input ng-model="StudentMess.ID_card" type="text">
+                </div>
+                <div style="float: left;width: 350px;height: 50px">
+                    学院:<select ng-model="StudentMess.Colleges" ng-change="change(StudentMess.Colleges)" style="height: 200px;width: 20%">
+                    <option ng-repeat="ds in College" value="{{ds._id}}">{{ds.CollegeName}}</option>
+                </select>
+                </div>
+                <div style="float: right;width: 350px;height: 50px">
+                    专业:<select ng-model="StudentMess.Professions" ng-change="change1(StudentMess.Professions)" style="height: 200px;width: 20%">
+                    <option ng-repeat="ds in Profession" value="{{ds._id}}">{{ds.ProfessionName}}</option>
+                </select>
+                </div>
+                <div style="float: left;width: 350px;height: 50px">
+                    班级:<select ng-model="StudentMess.Classes" ng-change="change2(StudentMess.Classes)" style="height: 200px;width: 20%">
+                    <option ng-repeat="ds in Classes" value="{{ds._id}}">{{ds.ClassName}}</option>
+                </select>
+                </div>
+                <div style="float: right;width: 350px;height: 50px">
+                    性别:<select ng-model="StudentMess.Sex" style="height: 200px;width: 20%">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+                </div>
+                <div cg-busy="myPromise"></div>
+            </div>
+
+            <div class="modal-footer" >
+                <button type="button" ng-click="closeModal1(StudentMess)" class="btn btn-default">添加学生</button>
+                <button type="button"  class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

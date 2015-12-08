@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div class="right-nav">
+    <ul>
+        <li style="margin-left:25px;">您当前的位置：</li>
+        <li><a href="#">旷课查询</a></li>
+    </ul>
+</div>
+<div class="main">
+    <div class="col-md-10">
+        <div class=“row”>
+            <div style="float: left;">
+                <div style="margin-top: 10px;clear: both;">
+                    选择学院： <select ng-model="Message.CollegeId" ng-change="change(Message.CollegeId)" style="width: 150px;border-radius: 0">
+                    <option ng-repeat="ds in College" value="{{ds._id}}">{{ds.CollegeName}}</option></select>
+                </div>
+                <div style="margin-top: 10px;clear: both">
+                    选择专业： <select ng-model="Message.ProfessionId" ng-change="change1(Message.ProfessionId)" style="width: 150px;border-radius: 0">
+                    <option ng-repeat="ds in Profession" value="{{ds._id}}">{{ds.ProfessionName}}</option></select>
+                </div>
+                <div style="margin-top: 10px;clear: both">
+                    选择班级： <select ng-model="Message.ClassId" ng-change="change2(Message.ClassId)" style="width: 150px;border-radius: 0">
+                    <option ng-repeat="ds in Classes" value="{{ds._id}}">{{ds.ClassName}}</option></select>
+                </div>
+            </div>
+            <div style="float: left;margin-left: 30px;margin-top: 10px;">
+                <div style="clear: both">
+                    开始统计日期：<input type="date" ng-model="startdate"/>
+                </div>
+                <div style="clear: both;margin-top: 2px" >
+                    结束统计日期：<input type="date" ng-model="enddate"/>
+                </div>
+            </div>
+            <div style="clear: both;">
+                <br/>
+                <div id="grid1" ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav external-scopes="clickHandler"  ui-grid-pagination class="grid"></div>
+            </div>
+            <div cg-busy="myPromise"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

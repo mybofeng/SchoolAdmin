@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-grid/ui-grid.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-busy/dist/angular-busy.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-datepicker/dist/angular-datepicker.min.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="bower_components/js-xlsx/dist/xlsx.core.min.js"></script>
+    <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+    <script src="bower_components/angular-modal-service/dst/angular-modal-service.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/angular-datepicker/dist/angular-datepicker.min.js"></script>
+
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="bootstrap/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+    <link href="bootstrap/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="bootstrap/templatemo_style.css" rel="stylesheet" type="text/css">
+    <!--<link rel="stylesheet" href="app.css">-->
+    <script src="truancy/truancy.js"></script>
+    <title>后台管理系统登录</title>
+</head>
+<body class="templatemo-bg-gray" ng-controller="LoginCtrl">
+<div class="container">
+    <div class="col-md-12">
+        <h1 class="margin-bottom-15">后台管理登录 {{newhtml}}</h1>
+
+        <form class="form-horizontal templatemo-container templatemo-login-form-1 margin-bottom-30" role="form"
+              action="#" method="post">
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input type="text" class="form-control" ng-model="user.Number" placeholder="账号">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="password" class="form-control" ng-model="user.Password" placeholder="密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="button" value="登录" class="btn btn-large btn-block btn-primary" ng-click="login()">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+<script>
+    var helloApp = angular.module("myApp", []);
+    helloApp.controller("LoginCtrl", function($scope,$http) {
+        $scope.user = {
+            Number:'14631818',
+            Password:'123'
+        }
+        $scope.login = function() {
+            //alert('33');
+            $http.get('http://113.31.89.205:4343/manage_login', {
+                params: {
+                    Number:$scope.user.Number,
+                    Password:$scope.user.Password
+                }
+            })
+                    .success(function (data) {
+                        if(data === "请输入正确的信息"){
+                            alert(data)
+                        }else{
+                            window.localStorage['TeacherName']=data.Name;
+                            window.localStorage['ClassId'] = data.Classes[0];
+                            window.localStorage['TeacherId'] = data._id;
+                            window.location.href='index.html';
+                        }
+                    })
+        };
+    });
+</script>
+</html>

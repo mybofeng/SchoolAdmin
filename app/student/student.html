@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="right-nav">
+    <ul>
+        <li style="margin-left:25px;">您当前的位置：</li>
+        <li><a href="#">查看学生信息</a></li>
+    </ul>
+</div>
+<div class="main">
+    <div class="col-md-10">
+        <div style="margin-top: 10px">
+            选择学院： <select ng-model="Message.CollegeId" ng-change="change(Message.CollegeId)" style="height: 200px;width: 20%">
+            <option ng-repeat="ds in College" value="{{ds._id}}">{{ds.CollegeName}}</option>
+        </select>
+        </div>
+        <div style="margin-top: 10px">
+            选择专业： <select ng-model="Message.ProfessionId" ng-change="change1(Message.ProfessionId)" style="height: 200px;width: 20%">
+            <option ng-repeat="ds in Profession" value="{{ds._id}}">{{ds.ProfessionName}}</option>
+        </select>
+        </div>
+        <div style="margin-top: 10px">
+            选择班级： <select ng-model="Message.ClassId" ng-change="change2(Message.ClassId)" style="height: 200px;width: 20%">
+            <option ng-repeat="ds in Classes" value="{{ds._id}}">{{ds.ClassName}}</option>
+        </select>
+        </div>
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-12">
+
+                <div id="grid" ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav external-scopes="clickHandler"  ui-grid-pagination class="grid"></div>
+
+            </div>
+            <div cg-busy="myPromise"></div>
+        </div>
+        <div style="margin-top: 20px">
+            <button type="button" class="btn btn-success" ng-click="add()">添加学生</button>
+            <button type="button" class="btn btn-success" ng-click="modify()">修改学生信息</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

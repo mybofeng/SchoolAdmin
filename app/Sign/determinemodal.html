@@ -1,0 +1,21 @@
+<div class="modal fade" style="margin-top: 200px;">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 500px;">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">确定保存</h4>
+            </div>
+            <div class="modal-body">
+                <h5 ng-show="ngshow == 2">您确定要保存吗？</h5>
+                <h5 ng-show="ngshow == 1">您有部分信息未完善，请先完善信息</h5>
+            </div>
+            <div class="modal-footer" ng-show="ngshow == 1">
+                <button type="button" ng-click="closeModal('No')" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+            <div class="modal-footer" ng-show="ngshow == 2">
+                <button type="button" ng-click="closeModal('No')" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" ng-click="closeModal('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
