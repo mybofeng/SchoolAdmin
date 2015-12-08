@@ -4,7 +4,7 @@ var express = require('express')
     , app = express()
     , server = require('http').createServer(app);
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3434);
 app.set('views', __dirname + '/views');
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html'); //修改文件扩展名ejs为html
