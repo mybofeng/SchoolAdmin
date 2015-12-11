@@ -9,6 +9,27 @@ angular.module('myApp.course', ['ngRoute', 'NewfileDialog', 'datePicker', 'angul
     }])
 
     .controller('courseCtrl', function ($scope, $http, ModalService, $filter) {
+        $scope.College = '';
+        $scope.Profession = '';
+        $scope.Classes = '';
+        $scope.teacher = '';
+        $scope.Message = '';
+        if(window.localStorage['Purview'] == '4'){
+           //纪委
+            $scope.Purview = window.localStorage['Purview'];
+            $scope.myPromise = $http.get(URL + 'getClassProject', {params: {ClassId: window.localStorage['ClassId']}})
+                .success(function (data) {
+                    $scope.ClassProjects = data;
+                    console.log(data);
+                }).error(function (data) {
+
+                }).finally(function () {
+
+                });
+        }else{
+            //老师
+            $scope.Purview= '5'
+        }
         window.localStorage["SubjectClassId"] = '';
         window.localStorage['ClassName'] == '';
         var paginationOptions = {
@@ -16,11 +37,7 @@ angular.module('myApp.course', ['ngRoute', 'NewfileDialog', 'datePicker', 'angul
             pageSize: 25,
             totalPage: 1
         };
-        $scope.College = '';
-        $scope.Profession = '';
-        $scope.Classes = '';
-        $scope.teacher = '';
-        $scope.Message = '';
+
 
 
         //保存
@@ -56,19 +73,17 @@ angular.module('myApp.course', ['ngRoute', 'NewfileDialog', 'datePicker', 'angul
                 }})
                 .success(function (data) {
                 //
-                    alert('删除成功')
-                    $http.get(URL + 'getProjectByProjectName', {
-                        params: {
-                            ClassId: entity.SubClassId,
-                            SubjectName:entity.SubName
-                        }})
-                        .success(function (data) {
-                            $scope.gridOptions.data = data;
-                        }).error(function (data) {
-
-                        }).finally(function () {
-
-                        });
+                    alert('删除成功');
+                    var i;
+                    for(i =0; i<$scope.gridOptions.data.length; i++) //n为数组长度
+                    {
+                        if($scope.gridOptions.data[i] == entity) //temp为要查找 的元素
+                        {
+                            //alert(i);
+                            var j=i+1;
+                            $scope.gridOptions.data.splice(i,j);
+                        }
+                    }
                 }).error(function (data) {
 
             });
@@ -99,14 +114,14 @@ angular.module('myApp.course', ['ngRoute', 'NewfileDialog', 'datePicker', 'angul
                     name: '上课时间',
                     field: 'BeginSubjectDate',
                     enableCellEdit: false,
-                    cellTemplate:'<select ng-model="row.entity.BeginSubjectDate" style="background-color:white;width: 100%;border-radius: 0;height: 100%;border: 0;"><option value="0">请选择</option><option value="8:10">第一节</option><option value="10:10">第三节</option><option value="14:30">第五节</option><option value="19:00">第八节</option><option value="14:30">中午4节开始上课</option><option value="18:30">晚上4节开始上课</option></select>'
+                    cellTemplate:'<select ng-model="row.entity.BeginSubjectDate" style="background-color:white;width: 100%;border-radius: 0;height: 100%;border: 0;"><option value="0">请选择</option><option value="08:10">第一节</option><option value="10:10">第三节</option><option value="14:30">第五节</option><option value="19:00">第八节</option><option value="14:30">中午4节开始上课</option><option value="18:30">晚上4节开始上课</option></select>'
                 },
 
                 {
                     name: '下课时间',
                     field: 'EndSubjectDate',
                     enableCellEdit: false,
-                    cellTemplate:'<select ng-model="row.entity.EndSubjectDate" style="background-color:white;width: 100%;border-radius: 0;height: 100%;border: 0;"><option value="0">请选择</option><option value="9:50">第二节</option><option value="10:55">第三节</option><option value="11:50">第四节</option><option value="16:10">第六节</option><option value="17:05">第七节</option><option value="20:40">第九节</option><option value="21:40">第十节</option><option value="17:55">中午4节下课</option><option value="21:50">晚上4节下课</option></select>'
+                    cellTemplate:'<select ng-model="row.entity.EndSubjectDate" style="background-color:white;width: 100%;border-radius: 0;height: 100%;border: 0;"><option value="0">请选择</option><option value="09:50">第二节</option><option value="10:55">第三节</option><option value="11:50">第四节</option><option value="16:10">第六节</option><option value="17:05">第七节</option><option value="20:40">第九节</option><option value="21:40">第十节</option><option value="17:55">中午4节下课</option><option value="21:50">晚上4节下课</option></select>'
 
                 },
                 {
@@ -216,12 +231,7 @@ angular.module('myApp.course', ['ngRoute', 'NewfileDialog', 'datePicker', 'angul
                 }).then(function (modal) {
 
                     modal.element.modal();
-                    modal.close.then(function (result) {
-                        if (result == "Yes") {
-
-                        }else{
-
-                        }
+                    modal.close.then(function (myresult) {
                     })
                 })
             //}
@@ -229,9 +239,9 @@ angular.module('myApp.course', ['ngRoute', 'NewfileDialog', 'datePicker', 'angul
         }
 
     })
-    .controller('addcourseCtrl',function($scope,close,ModalService){
-        $scope.closeModal = function (result) {
-            close(result, 500);
+    .controller('addcourseCtrl',function($scope,close,ModalService,$http){
+        $scope.mycloseModal = function (myresult) {
+            close(myresult, 500);
         };
         $scope.savemo = function(){
             var Fill = 0;
@@ -275,12 +285,37 @@ angular.module('myApp.course', ['ngRoute', 'NewfileDialog', 'datePicker', 'angul
                     modal.close.then(function (result) {
                         if (result == "Yes") {
                             //
+                            $scope.mycloseModal();
                             $http.post(URL + 'ImportSignIn', $scope.ff)
                                 .success(function (data) {
 
                                     if(data=='finish'){
                                         alert("保存成功");
                                         $scope.gridOptions.data.splice(0,100000000);
+                                        if( window.localStorage['Purview'] == '4'){
+                                            $scope.myPromise = $http.get(URL + 'getClassProject', {params: {ClassId: window.localStorage['ClassId']}})
+                                                .success(function (data) {
+                                                    $scope.ClassProjects = data;
+                                                    console.log(data);
+                                                }).error(function (data) {
+
+                                                }).finally(function () {
+
+                                                });
+
+                                        }else{
+                                            $scope.myPromise = $http.get(URL + 'getClassProject', {params: {ClassId:  window.localStorage['SubjectClassId']}})
+                                                .success(function (data) {
+                                                    $scope.ClassProjects = data;
+                                                    console.log(data);
+                                                }).error(function (data) {
+
+                                                }).finally(function () {
+
+                                                });
+                                        }
+
+
                                     }else{
                                         alert('保存失败');
                                     }

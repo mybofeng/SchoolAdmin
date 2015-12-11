@@ -15,17 +15,17 @@
 <div class="main">
     <div class="col-md-10">
         <div style="margin-top: 10px">
-            选择学院： <select ng-model="Message.CollegeId" ng-change="change(Message.CollegeId)" style="height: 200px;width: 20%">
+            选择学院： <select ng-model="Message.CollegeId" ng-change="change(Message.CollegeId)" style="width: 20%;border-radius: 0">
             <option ng-repeat="ds in College" value="{{ds._id}}">{{ds.CollegeName}}</option>
         </select>
         </div>
         <div style="margin-top: 10px">
-            选择专业： <select ng-model="Message.ProfessionId" ng-change="change1(Message.ProfessionId)" style="height: 200px;width: 20%">
+            选择专业： <select ng-model="Message.ProfessionId" ng-change="change1(Message.ProfessionId)" style="width: 20%;border-radius: 0">
             <option ng-repeat="ds in Profession" value="{{ds._id}}">{{ds.ProfessionName}}</option>
         </select>
         </div>
         <div style="margin-top: 10px">
-            选择班级： <select ng-model="Message.ClassId" ng-change="classname(Message.ClassId)" style="height: 200px;width: 20%">
+            选择班级： <select ng-model="Message.ClassId" ng-change="classname(Message.ClassId)" style="width: 20%;border-radius: 0">
             <option ng-repeat="ds in Classes" value="{{ds._id}}">{{ds.ClassName}}</option>
         </select>
         </div>
@@ -60,7 +60,6 @@
         </div>
         <div style="margin-top: 20px">
             <button type="button" class="btn btn-success" ng-click="send()">保存数据</button>
-
             <button type="button" onclick="window.location.href='moban.xls'" class="btn btn-primary">下载模版</button>
         </div>
     </div>

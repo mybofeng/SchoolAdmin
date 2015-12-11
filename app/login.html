@@ -58,25 +58,35 @@
     var helloApp = angular.module("myApp", []);
     helloApp.controller("LoginCtrl", function($scope,$http) {
         $scope.user = {
-            Number:'14631818',
-            Password:'123'
+            Number:'',
+            Password:''
         }
         $scope.login = function() {
             //alert('33');
-            $http.get('http://113.31.89.205:4343/manage_login', {
-                params: {
+            $http.post('http://113.31.89.205:3232/login', {
                     Number:$scope.user.Number,
                     Password:$scope.user.Password
-                }
             })
                     .success(function (data) {
                         if(data === "请输入正确的信息"){
                             alert(data)
                         }else{
-                            window.localStorage['TeacherName']=data.Name;
-                            window.localStorage['ClassId'] = data.Classes[0];
-                            window.localStorage['TeacherId'] = data._id;
-                            window.location.href='index.html';
+                            if(data.Purview == 4){
+                                //学生
+                                console.log('1111');
+                                window.localStorage['Purview']=data.Purview;
+                                window.localStorage['Name']=data.StudentName;
+                                window.localStorage['ClassId']=data.Classes;
+                                window.location.href='index.html';
+                            }else{
+                                //老师
+                                window.localStorage['Name']=data.Name;
+                                window.localStorage['Purview']=data.Purview;
+                                window.localStorage['ClassId'] = data.Classes[0];
+                                window.localStorage['TeacherId'] = data._id;
+                                window.location.href='index.html';
+                            }
+
                         }
                     })
         };

@@ -15,20 +15,25 @@
     <div class="col-md-10">
         <div class=“row”>
             <!--<div><h2>调课</h2></div>-->
-            <div style="margin-top: 10px">
-                选择学院： <select ng-model="Message.CollegeId" ng-change="change(Message.CollegeId)" style="width: 20%;border-radius: 0">
-                <option ng-repeat="ds in College" value="{{ds._id}}">{{ds.CollegeName}}</option>
-            </select>
-            </div>
-            <div style="margin-top: 10px">
-                选择专业： <select ng-model="Message.ProfessionId" ng-change="change1(Message.ProfessionId)" style="width: 20%;border-radius: 0">
-                <option ng-repeat="ds in Profession" value="{{ds._id}}">{{ds.ProfessionName}}</option>
-            </select>
-            </div>
-            <div style="margin-top: 10px">
-                选择班级： <select ng-model="Message.ClassId" ng-change="change2(Message.ClassId)" style="width: 20%;border-radius: 0">
-                <option ng-repeat="ds in Classes" value="{{ds._id}}#{{ds.ClassName}}">{{ds.ClassName}}</option>
-            </select>
+            <div ng-show="Purview == 5">
+                <div style="margin-top: 10px">
+                    选择学院： <select ng-model="Message.CollegeId" ng-change="change(Message.CollegeId)"
+                                  style="width: 20%;border-radius: 0">
+                    <option ng-repeat="ds in College" value="{{ds._id}}">{{ds.CollegeName}}</option>
+                </select>
+                </div>
+                <div style="margin-top: 10px">
+                    选择专业： <select ng-model="Message.ProfessionId" ng-change="change1(Message.ProfessionId)"
+                                  style="width: 20%;border-radius: 0">
+                    <option ng-repeat="ds in Profession" value="{{ds._id}}">{{ds.ProfessionName}}</option>
+                </select>
+                </div>
+                <div style="margin-top: 10px">
+                    选择班级： <select ng-model="Message.ClassId" ng-change="change2(Message.ClassId)"
+                                  style="width: 20%;border-radius: 0">
+                    <option ng-repeat="ds in Classes" value="{{ds._id}}#{{ds.ClassName}}">{{ds.ClassName}}</option>
+                </select>
+                </div>
             </div>
             <div style="margin-top: 10px">
                 选择课程： <select ng-model="Message.ClassProject" ng-change="change3(Message.ClassProject)" style="width: 20%;border-radius: 0">
