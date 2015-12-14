@@ -4,11 +4,13 @@
 'use strict';
 
 angular.module('myApp.sign', ['pickadate','ngRoute', 'NewfileDialog', 'datePicker', 'angularModalService', 'ngFileUpload', 'cgBusy', 'ngRoute', 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.treeView', 'ui.grid.selection', 'ui.grid.pagination'])
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProvider) {
+
         $routeProvider.when('/sign', {
             templateUrl: 'Sign/sign.html',
             controller: 'signCtrl'
         });
+        $httpProvider.defaults.withCredentials = true;
     }])
 
     .controller('signCtrl', function ($scope, $http,ModalService) {

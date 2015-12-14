@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('myApp.truancy', ['ngRoute','NewfileDialog', 'datePicker', 'angularModalService', 'ngFileUpload', 'cgBusy', 'ngRoute', 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.treeView', 'ui.grid.selection', 'ui.grid.pagination'])
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/truancy', {
-    templateUrl: 'truancy/truancy.html',
-    controller: 'truancyCtrl'
-  });
-}])
+    .config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
+
+        $routeProvider.when('/truancy', {
+            templateUrl: 'truancy/truancy.html',
+            controller: 'truancyCtrl'
+        });
+        $httpProvider.defaults.withCredentials = true;
+    }])
 
 .controller('truancyCtrl', function($scope,$http,$filter) {
         if(window.localStorage['Purview'] == '4'){

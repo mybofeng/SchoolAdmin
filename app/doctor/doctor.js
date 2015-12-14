@@ -4,7 +4,8 @@
 'use strict';
 angular.module('myApp.doctor', ['NewfileDialog', 'datePicker', 'angularModalService', 'ngFileUpload', 'cgBusy', 'ngRoute', 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.treeView', 'ui.grid.selection', 'ui.grid.pagination'])
 
-    .config(['$routeProvider', function ($routeProvider, $http) {
+    .config(['$routeProvider', function ($routeProvider) {
+        //$httpProvider.defaults.withCredentials = true;
         $routeProvider.when('/doctor', {
             templateUrl: 'doctor/doctor.html',
             controller: 'DoctorCtrl'

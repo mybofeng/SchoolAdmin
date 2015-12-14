@@ -56,6 +56,9 @@
 </body>
 <script>
     var helloApp = angular.module("myApp", []);
+    helloApp.config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.defaults.withCredentials = true;
+    }])
     helloApp.controller("LoginCtrl", function($scope,$http) {
         $scope.user = {
             Number:'',
@@ -64,6 +67,7 @@
         $scope.login = function() {
             //alert('33');
             $http.post('http://113.31.89.205:3232/login', {
+//            $http.post('http://10.0.1.14:3232/login', {
                     Number:$scope.user.Number,
                     Password:$scope.user.Password
             })

@@ -5,11 +5,13 @@
 
 angular.module('myApp.student', ['pickadate','ngRoute', 'NewfileDialog', 'datePicker', 'angularModalService', 'ngFileUpload', 'cgBusy', 'ngRoute', 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.treeView', 'ui.grid.selection', 'ui.grid.pagination'])
 
-    .config(['$routeProvider', function ($routeProvider, $http) {
+    .config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProvider) {
+
         $routeProvider.when('/student', {
             templateUrl: 'student/student.html',
             controller: 'studentCtrl'
         });
+        $httpProvider.defaults.withCredentials = true;
     }])
     .controller('studentCtrl', function ($scope, $http,ModalService) {
         //

@@ -2,11 +2,13 @@
  * Created by fish on 15/10/29.
  */
 angular.module('myApp.import', ['ngRoute', 'cipchk', 'NewfileDialog', 'datePicker', 'angularModalService', 'ngFileUpload', 'cgBusy', 'ngRoute', 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.treeView', 'ui.grid.selection', 'ui.grid.pagination'])
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProvider) {
+
         $routeProvider.when('/import', {
             templateUrl: 'import/import.html',
             controller: 'importCtrl'
         });
+        $httpProvider.defaults.withCredentials = true;
     }])
     .controller('importCtrl', function ($scope, $http, fileDialog, Upload) {
 
